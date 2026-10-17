@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: GradeCalculator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - name: Compile
+        run: javac -d out src/GradeCalculator/App.java src/GradeCalculator/Util/*.java
+      # Register a student averaging 80%, print the report, then try a mark of 150.
+      - name: Smoke test
+        run: |
+          printf '1\nAda\nLovelace\n2\nMaths\n90\nScience\n70\n2\n1\nAlan\nTuring\n1\nPhysics\n150\n3\n' \
+            | java -cp out GradeCalculator.App | tee run.txt
+          grep -q "Performance Category: Distinction" run.txt
+          grep -q "Name:    Ada Lovelace" run.txt
+          grep -q "Grades must be between 0 and 100" run.txt

@@ -1,5 +1,7 @@
 # Academic Management CLI
 
+[![Build](https://github.com/JaunteGarciaZa/JavaStudentGradeCalculator/actions/workflows/build.yml/badge.svg)](https://github.com/JaunteGarciaZa/JavaStudentGradeCalculator/actions/workflows/build.yml)
+
 A console app that registers students, validates their marks and prints a class report. It is small, but built the way bigger programs are: a clear domain model, rules behind an interface, and input handling that doesn't fall over.
 
 ```
