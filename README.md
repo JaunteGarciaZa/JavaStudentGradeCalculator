@@ -16,6 +16,30 @@ A console app that registers students, validates their marks and prints a class 
 Selection >
 ```
 
+A class report, straight from the CI smoke test:
+
+```
+==============================
+CLASS REPORT
+LECTURER: Lecturer: Jane Doe | Contact: j.doe@uni.edu | Expert in: [Software Engineering]
+==============================
+--------------------------------
+| STUDENT RECORD
+--------------------------------
+| Name:    Ada Lovelace
+| Email:   ada.lovelace@student.com
+| Average: 80%
+| Subjects: [Maths, Science]
+--------------------------------
+```
+
+And what a mark of 150 gets you, with the menu still running:
+
+```
+Grade (0-100): 150
+Validation Error: Grades must be between 0 and 100.
+```
+
 ## What it does
 
 - **Registers a student:** first name and surname, then any number of subjects with a mark for each. It generates a student email and reports the student's average and performance band.
@@ -37,7 +61,7 @@ Averages are computed with streams (`mapToInt(...).average()`). Menu choices use
 
 ## Run it
 
-You need **JDK 25**.
+You need **JDK 25**. Every push is compiled and smoke-tested by GitHub Actions: it registers a student, prints the report and checks that a bad mark is rejected.
 
 ```bash
 cd GradeCalculator
